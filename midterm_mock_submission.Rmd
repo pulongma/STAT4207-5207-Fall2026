@@ -1,0 +1,70 @@
+---
+title: "STAT 4207/5207: Midterm Exam"
+author: "Test Student"
+date: "Fall 2026"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk\$set(echo = TRUE)
+# Load core course package libraries
+library(tidyverse)
+library(MASS)
+library(cluster)
+```
+
+## Question 1: FBI Dataset Exploration
+
+We load the FBI crime statistics dataset using the system's standard relative data pathway and extract its sample covariance parameters.
+
+```{r question-1}
+# Read the dataset securely from the mapped container folder
+fbi_data <- read.csv("data/fbi.csv")
+
+# Isolate numeric columns to compute the sample covariance matrix
+# (Assumes columns 2 through 5 are numeric for this test case)
+numeric_fbi <- fbi_data %>% select(where(is.numeric))
+fbi_cov_matrix <- cov(numeric_fbi)
+
+# View covariance dimensions
+dim(fbi_cov_matrix)
+```
+
+## Question 2: Men's Track Records PCA
+
+We apply Principal Component Analysis (PCA) to the track metrics to explore variance dimensions, making sure to explicitly enable standard feature standardization scaling.
+
+```{r question-2}
+# Load the track dataset 
+track_data <- read.csv("data/records.men.csv")
+
+# Isolate numeric metrics for dimensional reduction
+numeric_track <- track_data %>% select(where(is.numeric))
+
+# Run PCA with mandatory standardization scaling flags active
+track_pca <- prcomp(numeric_track, scale. = TRUE)
+
+# Display variance breakdown
+summary(track_pca)
+```
+
+## Question 3: Wine Quality Cluster Analysis
+
+We implement a partitioning cluster algorithm using K-Means to separate the chemical characteristics of wine into 3 distinct categories.
+
+```{r question-3}
+# Load the wine profiling matrix
+wine_data <- read.csv("data/winequality.csv")
+
+# Isolate features for partitioning
+numeric_wine <- wine_data %>% select(where(is.numeric))
+
+# Enforce numerical convergence reproducibility boundaries
+set.seed(42)
+
+# Execute the K-Means algorithm targeting 3 cluster partitions
+wine_clusters <- kmeans(numeric_wine, centers = 3, nstart = 20)
+
+# Display within-cluster summary metrics
+wine_clusters\$tot.withinss
+```
