@@ -1,0 +1,54 @@
+---
+title: "STAT 4207/5207 — Lab 1"
+author: "Instructor/testing copy"
+output:
+  html_document:
+    toc: true
+    self_contained: true
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## R work used for testing
+
+```{r analysis}
+group_members <- c("Instructor solution")
+
+start_value <- 57
+after_add <- start_value + 2
+after_multiply <- after_add * 3
+after_subtract <- after_multiply - 6
+final_value <- after_subtract / 3
+
+tips <- read.csv("tips.csv", stringsAsFactors = TRUE)
+
+# Exercise 2 data exploration
+dim(tips)
+head(tips)
+str(tips)
+summary(tips)
+names(tips)
+levels(tips$day)
+
+n_cases <- nrow(tips)
+n_variables <- ncol(tips) - 1
+quantitative_variables <- c("totbill", "tip", "size")
+categorical_variables <- c("sex", "smoker", "day", "time")
+collection_days <- levels(tips$day)
+
+library(ggplot2)
+tips_plot <- ggplot(tips, aes(x = totbill, y = tip)) + geom_point()
+association_direction <- "positive"
+relationship_form <- "approximately linear"
+spread_pattern <- "increases"
+
+tip_model <- lm(tip ~ totbill, data = tips)
+intercept <- unname(coef(tip_model)[1])
+slope <- unname(coef(tip_model)[2])
+predicted_tip_45 <- unname(predict(tip_model, newdata = data.frame(totbill = 45)))
+slope_percent <- 100 * slope
+```

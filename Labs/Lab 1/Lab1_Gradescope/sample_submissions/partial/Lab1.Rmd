@@ -1,0 +1,49 @@
+---
+title: "STAT 4207/5207 — Lab 1"
+author: "Instructor/testing copy"
+output:
+  html_document:
+    toc: true
+    self_contained: true
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## R work used for testing
+
+```{r analysis}
+group_members <- "Partial-credit test"
+start_value <- 10
+after_add <- 12
+after_multiply <- 36
+after_subtract <- 30
+final_value <- 15  # Deliberate error
+tips <- read.csv("tips.csv", stringsAsFactors = TRUE)
+
+# Exercise 2 data exploration
+dim(tips)
+head(tips)
+str(tips)
+summary(tips)
+names(tips)
+levels(tips$day)
+n_cases <- 244
+n_variables <- 8  # Deliberately counts obs
+quantitative_variables <- c("totbill", "tip")
+categorical_variables <- c("sex", "smoker", "day", "time")
+collection_days <- c("Fri", "Sat", "Sun")
+library(ggplot2)
+tips_plot <- ggplot(tips, aes(tip, totbill)) + geom_point() # Axes reversed
+association_direction <- "positive"
+relationship_form <- "strongly curved"
+spread_pattern <- "approximately constant"
+tip_model <- lm(totbill ~ tip, data = tips) # Reversed model
+intercept <- 0
+slope <- 0
+predicted_tip_45 <- 0
+slope_percent <- 0
+```

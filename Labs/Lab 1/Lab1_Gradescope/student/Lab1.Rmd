@@ -1,0 +1,170 @@
+---
+title: "STAT 4207/5207 — Lab 1"
+author: "Student group"
+output:
+  html_document:
+    toc: true
+    self_contained: true
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## Submission instructions
+
+Keep `Lab1.Rmd` and every supplied data file in the same folder. Complete
+the R code and answer the written questions below. Knit the complete report to
+HTML (recommended) or PDF on your own computer to check that the code, tables,
+plots, and written responses render correctly. Upload only `Lab1.Rmd` to
+Gradescope; do not upload the HTML or PDF file. The autograder evaluates the
+named R objects, and a teaching assistant grades the written responses in the
+submitted `Lab1.Rmd`.
+
+## Written responses — 2 points, graded by a TA
+
+Answer each question below in complete sentences and refer to your R output.
+These responses are graded manually by a teaching assistant.
+
+### Exercise 2 — Exploring the tips data
+
+1. How many cases are in the `tips` data? Explain which output shows this.
+
+   **Response:** Replace this text with your answer.
+
+2. How many statistical variables are in the data? Explain why `obs` is an
+   observation identifier rather than a statistical variable.
+
+   **Response:** Replace this text with your answer.
+
+3. What types of variables are present? Identify the quantitative and
+   categorical variables and explain how the output from `str()`, `summary()`,
+   `names()`, or `levels()` supports your classification.
+
+   **Response:** Replace this text with your answer.
+
+4. On which days of the week were tips collected? Cite the relevant factor
+   levels or summary output.
+
+   **Response:** Replace this text with your answer.
+
+### Exercise 3 — Scatterplot interpretation
+
+5. Describe what the scatterplot reveals about the relationship between the
+   amount of the tip and the total bill. Discuss direction, form, spread, and
+   any unusual observations.
+
+   **Response:** Replace this text with your answer.
+
+### Exercise 4 — Simple linear regression
+
+6. Report the intercept and slope of the least-squares regression line and
+   interpret both coefficients in the context of total bill and tip. Also
+   explain the estimated average tip for a $45 bill and the meaning of the
+   slope percentage.
+
+   **Response:** Replace this text with your answer.
+
+## Autograded R work — 8 points
+
+```{r analysis}
+# Group members:
+# Replace the example names below. This object is recorded for the instructor
+# but is not assigned points by the autograder.
+group_members <- c("Name 1", "Name 2")
+
+# Keep this file and tips.csv in the same folder while you work.
+# Submit this file to Gradescope with the filename Lab1.Rmd.
+# Do not rename any requested object.
+
+# -----------------------------------------------------------------------------
+# Exercise 1: R as a calculator and R objects (1.6 points)
+# -----------------------------------------------------------------------------
+
+# Choose any finite number as your starting value.
+start_value <- NULL
+
+# Add 2 to start_value.
+after_add <- NULL
+
+# Multiply after_add by 3.
+after_multiply <- NULL
+
+# Subtract 6 from after_multiply.
+after_subtract <- NULL
+
+# Divide after_subtract by 3. The result should equal start_value.
+final_value <- NULL
+
+# -----------------------------------------------------------------------------
+# Load the tips data (0.8 point)
+# -----------------------------------------------------------------------------
+
+# Read tips.csv as a data frame. Use stringsAsFactors = TRUE so the categorical
+# columns are stored as factors, as in the original lab.
+tips <- NULL
+
+# -----------------------------------------------------------------------------
+# Exercise 2: Getting started with data (2 points)
+# -----------------------------------------------------------------------------
+
+# Begin Exercise 2 by using all six functions to explore the data.
+dim(tips)
+head(tips)
+str(tips)
+summary(tips)
+names(tips)
+levels(tips$day)
+
+# Store the number of cases (rows) in n_cases.
+n_cases <- NULL
+
+# Store the number of variables in n_variables. Do not count obs, which is only
+# an observation identifier.
+n_variables <- NULL
+
+# Store the names of the quantitative variables, excluding obs, in a character
+# vector. Order does not matter.
+quantitative_variables <- NULL
+
+# Store the names of the categorical variables in a character vector.
+# Order does not matter.
+categorical_variables <- NULL
+
+# Store the days on which tips were collected in a character vector.
+# Abbreviations such as "Thu" or full names such as "Thursday" are accepted.
+collection_days <- NULL
+
+# -----------------------------------------------------------------------------
+# Exercise 3: Scatterplot and interpretation (1.6 points)
+# -----------------------------------------------------------------------------
+
+# Create a ggplot2 scatterplot with total bill on the x-axis and tip on the
+# y-axis. Store the plot object in tips_plot. Use ggplot() with geom_point(). Do not run install.packages() in this file.
+tips_plot <- NULL
+
+# Choose exactly one listed response for each interpretation object.
+association_direction <- NULL  # "negative", "none", or "positive"
+relationship_form <- NULL       # "approximately linear", "strongly curved", or "no clear form"
+spread_pattern <- NULL           # "decreases", "approximately constant", or "increases"
+
+# -----------------------------------------------------------------------------
+# Exercise 4: Simple linear regression (1.6 points)
+# -----------------------------------------------------------------------------
+
+# Fit tip as the response and totbill as the explanatory variable.
+tip_model <- NULL
+
+# Extract the estimated intercept and slope from tip_model.
+intercept <- NULL
+slope <- NULL
+
+# Use the fitted model to estimate the average tip for a $45 total bill.
+predicted_tip_45 <- NULL
+
+# Express the slope as a percentage of the total bill (for example, 10.5 rather
+# than 0.105). Store that number in slope_percent.
+slope_percent <- NULL
+```

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -u
+
+SOURCE_DIR="${AUTOGRADER_SOURCE_DIR:-/autograder/source}"
+SUBMISSION_DIR="${AUTOGRADER_SUBMISSION_DIR:-/autograder/submission}"
+RESULTS_DIR="${AUTOGRADER_RESULTS_DIR:-/autograder/results}"
+
+mkdir -p "$RESULTS_DIR"
+rm -f "$RESULTS_DIR/submission_objects.rds" \
+      "$RESULTS_DIR/student_output.txt" \
+      "$RESULTS_DIR/results.json"
+
+submission_file="$SUBMISSION_DIR/Lab1.Rmd"
+collection_file="$RESULTS_DIR/submission_objects.rds"
+student_log="$RESULTS_DIR/student_output.txt"
+
+collect_status=0
+if [[ ! -f "$submission_file" ]]; then
+  printf '%s\n' 'Required file Lab1.Rmd was not found.' > "$student_log"
+  collect_status=2
+else
+  if command -v timeout >/dev/null 2>&1; then
+    timeout 45s Rscript --vanilla "$SOURCE_DIR/collect_submission.R" \
+      "$submission_file" "$collection_file" "$SOURCE_DIR" > "$student_log" 2>&1 || collect_status=$?
+  else
+    # Local macOS fallback; Gradescope's Ubuntu image uses the timed branch.
+    Rscript --vanilla "$SOURCE_DIR/collect_submission.R" \
+      "$submission_file" "$collection_file" "$SOURCE_DIR" > "$student_log" 2>&1 || collect_status=$?
+  fi
+fi
+
+Rscript --vanilla "$SOURCE_DIR/grade_submission.R" \
+  "$collection_file" "$RESULTS_DIR/results.json" "$student_log" \
+  "$collect_status" "$SOURCE_DIR/tips.csv"

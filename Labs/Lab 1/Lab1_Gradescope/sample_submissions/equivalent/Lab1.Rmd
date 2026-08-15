@@ -1,0 +1,49 @@
+---
+title: "STAT 4207/5207 — Lab 1"
+author: "Instructor/testing copy"
+output:
+  html_document:
+    toc: true
+    self_contained: true
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## R work used for testing
+
+```{r analysis}
+group_members <- "Equivalent answer test"
+start_value <- -12.5
+after_add <- -10.5
+after_multiply <- -31.5
+after_subtract <- -37.5
+final_value <- -12.5
+tips <- read.csv("tips.csv", stringsAsFactors = TRUE)
+
+# Exercise 2 data exploration
+dim(tips)
+head(tips)
+str(tips)
+summary(tips)
+names(tips)
+levels(tips$day)
+n_cases <- 244
+n_variables <- 7
+quantitative_variables <- c("SIZE", "TIP", "TOTBILL")
+categorical_variables <- c("time", "day", "smoker", "sex")
+collection_days <- c("Sunday", "Thursday", "Saturday", "Friday")
+library(ggplot2)
+tips_plot <- ggplot(tips, aes(x = totbill, y = tip)) + geom_point()
+association_direction <- "upward"
+relationship_form <- "roughly linear"
+spread_pattern <- "wider as the bill increases"
+tip_model <- lm(tip ~ totbill, data = tips)
+intercept <- 0.9203
+slope <- 0.1050
+predicted_tip_45 <- 5.65
+slope_percent <- 10.5
+```
